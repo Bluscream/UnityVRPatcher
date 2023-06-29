@@ -1,9 +1,0 @@
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\bin\Release\UnityVRCameraReparent.dll
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\bin\Release\UnityVRCameraReparent.pdb
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\bin\Release\MelonLoader.dll
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\bin\Release\MelonLoader.xml
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\obj\Release\UnityVRCameraReparent.csproj.AssemblyReference.cache
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\obj\Release\UnityVRCameraReparent.csproj.CoreCompileInputs.cache
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\obj\Release\UnityVRCameraReparent.csproj.CopyComplete
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\obj\Release\UnityVRCameraReparent.dll
-C:\Users\blusc\source\repos\MelonLoader\Mods\unity-vr-camera-reparent\UnityVRCameraReparent\obj\Release\UnityVRCameraReparent.pdb
