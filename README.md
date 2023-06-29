@@ -14,7 +14,7 @@
 6. Start SteamVR with your HMD plugged in
 7. Start your game
 8. You can toggle VR with the default hotkey `F11`, so you can navigate the menus.
-9. Ingame just toggle VR again and enjoy 🙃: 🌪️:
+9. Ingame just toggle VR again and enjoy 🙃 🌪️
     
 Note: If you need to edit hotkeys, you can find them in `<Game Folder>\UserData\MelonPreferences.cfg`
 
