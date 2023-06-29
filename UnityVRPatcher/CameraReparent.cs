@@ -1,36 +1,10 @@
 ﻿using MelonLoader;
 using System;
-using System.Reflection;
 
-namespace Raicuparta.UnityVRCameraReparent
-{
-    public class UnityVRCameraReparent : MelonMod
-    {
-        Type InputType;
-        MethodInfo GetKeyDownMethod;
+namespace UnityVRPatcher {
+    public partial class Mod {
 
-        public override void OnApplicationStart()
-        {
-            InputType = Type.GetType("UnityEngine.Input, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
-            if (InputType == null)
-            {
-                InputType = Type.GetType("UnityEngine.Input, UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
-            }
-            GetKeyDownMethod = InputType.GetMethod("GetKeyDown", new[] { typeof(string) });
-        }
-
-        public override void OnUpdate()
-        {
-            var isKeyDown = (bool)GetKeyDownMethod.Invoke(null, new[] { "f2" });
-            if (isKeyDown)
-            {
-                ReparentCamera();
-            }
-        }
-
-        private void ReparentCamera()
-        {
-            MelonLogger.Log("Reparenting camera");
+        private void ReparentCamera() {
 
             var cameraType = Type.GetType("UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
             var mainCamera = cameraType.GetProperty("main").GetValue(null, null);
@@ -47,6 +21,7 @@ namespace Raicuparta.UnityVRCameraReparent
 
             transformType.GetProperty("parent").SetValue(vrCameraTransform, mainCameraTransform, null);
             cameraType.GetProperty("tag").SetValue(vrCamera, "MainCamera", null);
+            MelonLogger.Msg("Camera reparented");
         }
     }
 }

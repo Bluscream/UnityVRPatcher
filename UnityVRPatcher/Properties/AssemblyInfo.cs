@@ -1,20 +1,19 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using MelonLoader;
-using Raicuparta.UnityVRCameraReparent;
+using UnityVRPatcher;
 
-[assembly: MelonInfo(typeof(UnityVRCameraReparent), "UnityVRCameraReparent", "0.1.0", "Raicuparta")]
+[assembly: MelonInfo(typeof(Mod), "UnityVRPatcher", "1.0.0", "Bluscream")]
 [assembly: MelonGame(null, null)]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UnityVRCameraReparent")]
+[assembly: AssemblyTitle("UnityVRPatcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UnityVRCameraReparent")]
+[assembly: AssemblyProduct("UnityVRPatcher")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -25,7 +24,7 @@ using Raicuparta.UnityVRCameraReparent;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4faedec8-3d86-4350-b42d-dad4414e69d1")]
+[assembly: Guid("4faedec8-3d86-4350-b42d-dad4414e69d2")]
 
 // Version information for an assembly consists of the following four values:
 //
