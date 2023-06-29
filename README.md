@@ -10,7 +10,7 @@
 2. [Download the .dll of the latest release of this mod](https://github.com/Bluscream/UnityVRPatcher/releases/latest);
 3. Install the mod as any other MelonLoader mod.
 
-### Changing the world scale in-game
+### Reparenting the camera
 
 1. Start the game until you see the broken VR camera;
 2. Press **F2** to reparent the camera.
