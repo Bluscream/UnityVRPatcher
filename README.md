@@ -4,9 +4,7 @@
 - This mod is continuation of  @Raicuparta's great [unity-vr-camera-reparent](https://github.com/Raicuparta/unity-vr-camera-reparent) and [unity-scale-adjuster](https://github.com/Raicuparta/unity-scale-adjuster) Mods.
 - It has modifyable keybinds and a new VR toggle so you can actually control the UI while ingame lol.
 
-##
-
-**__VR Modding Tutorial__**
+## VR Modding Tutorial
 
 1. Patch your Game using https://www.notion.so/beastsaber/How-To-Force-Any-Unity-Game-to-Run-In-Native-VR-Mode-cf8c50f66f2740d5b692db786a8386a1 (Use the Manual Process)
 2. Install MelonLoader to your game following https://melonwiki.xyz/#/?id=requirements
