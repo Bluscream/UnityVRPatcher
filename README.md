@@ -21,6 +21,7 @@
 1. [Install MelonLoader by following the instructions on their page](https://melonwiki.xyz/#/?id=requirements);
 2. [Download the .dll of the latest release of this mod](https://github.com/Bluscream/UnityVRPatcher/releases/latest);
 3. Install the mod as any other MelonLoader mod.
+<hr>
 
 ### Reparenting the camera
 
