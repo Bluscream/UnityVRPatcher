@@ -1,8 +1,13 @@
-﻿using MelonLoader;
+﻿/*
+ * Huge thanks to @Raic
+*/
+
+using MelonLoader;
 using System;
 using System.Net;
 using System.Reflection;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 
 namespace UnityVRPatcher
 {
@@ -19,9 +24,35 @@ namespace UnityVRPatcher
         Type Vector3Type;
         MethodInfo Vector3MultiplyMethod;
 
-        public override void OnInitializeMelon()
-        {
+        MelonPreferences_Category cfg_general;
+        MelonPreferences_Entry auto_rescale_on_scene_change;
+
+
+        MelonPreferences_Category cfg_keyboard_shortcuts;
+        MelonPreferences_Entry keyboard_toggle_vr;
+        MelonPreferences_Entry keyboard_reparent_cam;
+        MelonPreferences_Entry keyboard_scale_up;
+        MelonPreferences_Entry keyboard_scale_down;
+        MelonPreferences_Entry keyboard_scale_to_user;
+        string keyboard_toggle_vr_key;
+        string keyboard_reparent_cam_key;
+        string keyboard_scale_up_key;
+        string keyboard_scale_down_key;
+        string keyboard_scale_to_user_key;
+
+        public override void OnInitializeMelon() {
             MelonLogger.Msg("UnityVRPatcher initializing");
+            cfg_general = MelonPreferences.CreateCategory("VRPatcher", "VR Patcher");
+            auto_rescale_on_scene_change = cfg_general.CreateEntry("auto_rescale_on_scene_change", false, "Automatically rescale camera when scene changes");
+
+            cfg_keyboard_shortcuts = MelonPreferences.CreateCategory("VRPatcherKeys", "VR Patcher Keybinds");
+            keyboard_toggle_vr = cfg_keyboard_shortcuts.CreateEntry("key_toggle_vr", "f11", "Key to toggle VR");
+            keyboard_reparent_cam = cfg_keyboard_shortcuts.CreateEntry("key_reparent_cam", "f2", "Key to reparent camera");
+            keyboard_scale_up = cfg_keyboard_shortcuts.CreateEntry("key_scale_up", "f4", "Key to scale up");
+            keyboard_scale_down = cfg_keyboard_shortcuts.CreateEntry("key_scale_down", "f3", "Key to scale down");
+            keyboard_scale_to_user = cfg_keyboard_shortcuts.CreateEntry("key_scale_to_user", "f5", "Key to scale to user");
+            //controller_toggle_vr = cfg_keyboard_shortcuts.CreateEntry("controller_toggle_vr", "joystick button 9", "Controller button to toggle VR");
+            OnPreferencesLoaded();
             try {
                 InputType = GetInputType();
                 GetKeyDownMethod = InputType.GetMethod("GetKeyDown", new[] { typeof(string) });
@@ -29,6 +60,7 @@ namespace UnityVRPatcher
                 MelonLogger.Error($"Error while grabbing Input Methods: {e}");
             }
             try {
+                UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
                 CameraType = GetUnityType("Camera");
                 TransformType = GetUnityType("Transform");
                 Vector3Type = GetUnityType("Vector3");
@@ -36,29 +68,43 @@ namespace UnityVRPatcher
             } catch (Exception e) {
                 MelonLogger.Error($"Error while initializing CameraReparent: {e}");
             }
+            // MelonPreferences.OnPreferencesSaved.Subscribe(OnPreferencesSaved);
+            // MelonPreferences.OnPreferencesLoaded.Subscribe(OnPreferencesSaved);
             MelonLogger.Msg("UnityVRPatcher initialized");
+        }
+
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
+            if ((bool)auto_rescale_on_scene_change.BoxedValue) SetScaleToUser();
+        }
+
+        public override void OnPreferencesLoaded() {
+            keyboard_toggle_vr_key = keyboard_toggle_vr.GetValueAsString();
+            keyboard_reparent_cam_key = keyboard_reparent_cam.GetValueAsString();
+            keyboard_scale_up_key = keyboard_scale_up.GetValueAsString();
+            keyboard_scale_down_key = keyboard_scale_down.GetValueAsString();
+            keyboard_scale_to_user_key = keyboard_scale_to_user.GetValueAsString();
+            MelonLogger.Msg($"Updated keybinds: {keyboard_toggle_vr_key}, {keyboard_reparent_cam_key}, {keyboard_scale_up_key}, {keyboard_scale_down_key}, {keyboard_scale_to_user_key}");
         }
 
         public override void OnUpdate()
         {
             if (GetKeyDownMethod == null) return;
-            if (GetKeyDown("f5")) {
+            if (GetKeyDown(keyboard_scale_to_user_key)) {
                 SetScaleToUser();
             }
-            else if (GetKeyDown("f4")) {
+            else if (GetKeyDown(keyboard_scale_up_key)) {
                 MultiplyCameraScale(ScaleUpMultiplier);
             }
-            else if (GetKeyDown("f3")) {
+            else if (GetKeyDown(keyboard_scale_down_key)) {
                 MultiplyCameraScale(ScaleDownMultiplier);
             }
-            else if (GetKeyDown("f2")) {
+            else if (GetKeyDown(keyboard_reparent_cam_key)) {
                 ReparentCamera();
-            } else if (GetKeyDown("f11")) {
+            } else if (GetKeyDown(keyboard_toggle_vr_key)) {
                 XRSettings.enabled = !XRSettings.enabled;
                 MelonLogger.Msg($"VR has been {(XRSettings.enabled ? "enabled" : "disabled")}");
             }
         }
-
 
         private object MultiplyVector3(object vector3, float multiplier) {
             return Vector3MultiplyMethod.Invoke(null, new object[] { vector3, multiplier });

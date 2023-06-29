@@ -41,6 +41,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>P:\Visual Studio\source\repos\MelonLoader\UnityAssemblies\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.VRModule">
       <HintPath>D:\OneDrive\Games\Storm Chasers\Storm Chasers_Data\Managed\UnityEngine.VRModule.dll</HintPath>
     </Reference>
