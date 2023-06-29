@@ -4,6 +4,20 @@
 - This mod is continuation of  @Raicuparta's great [unity-vr-camera-reparent](https://github.com/Raicuparta/unity-vr-camera-reparent) and [unity-scale-adjuster](https://github.com/Raicuparta/unity-scale-adjuster) Mods.
 - It has modifyable keybinds and a new VR toggle so you can actually control the UI while ingame lol.
 
+##
+
+**__VR Modding Tutorial__**
+
+1. Patch your Game using https://www.notion.so/beastsaber/How-To-Force-Any-Unity-Game-to-Run-In-Native-VR-Mode-cf8c50f66f2740d5b692db786a8386a1 (Use the Manual Process)
+2. Install MelonLoader to your game following https://melonwiki.xyz/#/?id=requirements
+3. Install https://github.com/Bluscream/UnityVRPatcher/releases to your game's Mods folder.
+4. Disable Steam Theater Mode for your game: https://steamcommunity.com/app/250820/discussions/0/1692669912408365970/
+5. Add `--melonloader.disablestartscreen` to your game's command line arguments in steam: https://www.howtogeek.com/825209/add-command-line-arguments-to-steam-gog-epic-games-store/#autotoc_anchor_1
+6. Start SteamVR with your HMD plugged in
+7. Start your game
+8. You can toggle VR with the default hotkey `F11`, so you can navigate the menus.
+9. Ingame just toggle VR again and enjoy :upside_down: :cloud_tornado:
+
 ## Installing the mod
 
 1. [Install MelonLoader by following the instructions on their page](https://melonwiki.xyz/#/?id=requirements);
