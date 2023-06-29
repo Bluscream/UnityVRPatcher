@@ -1,8 +1,8 @@
 # Unity VR Patcher Mod for MelonLoader
 
-A universal tweaker mod for Unity games that have been patched with VR after the fact. 
-This mod is continuation of  @Raicuparta's great [unity-vr-camera-reparent](https://github.com/Raicuparta/unity-vr-camera-reparent) and [unity-scale-adjuster](https://github.com/Raicuparta/unity-scale-adjuster) Mods.
-It has modifyable keybinds and a new VR toggle so you can actually control the UI while ingame lol.
+- A universal tweaker mod for Unity games that have been patched with VR after the fact. 
+- This mod is continuation of  @Raicuparta's great [unity-vr-camera-reparent](https://github.com/Raicuparta/unity-vr-camera-reparent) and [unity-scale-adjuster](https://github.com/Raicuparta/unity-scale-adjuster) Mods.
+- It has modifyable keybinds and a new VR toggle so you can actually control the UI while ingame lol.
 
 ## Installing the mod
 
