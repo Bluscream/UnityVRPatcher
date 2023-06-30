@@ -26,6 +26,7 @@ namespace UnityVRPatcher
 
         MelonPreferences_Category cfg_general;
         MelonPreferences_Entry auto_rescale_on_scene_change;
+        MelonPreferences_Entry auto_toggle_on_scene_change;
 
 
         MelonPreferences_Category cfg_keyboard_shortcuts;
@@ -46,6 +47,7 @@ namespace UnityVRPatcher
             MelonLogger.Msg("UnityVRPatcher initializing");
             cfg_general = MelonPreferences.CreateCategory("VRPatcher", "VR Patcher");
             auto_rescale_on_scene_change = cfg_general.CreateEntry("auto_rescale_on_scene_change", false, "Automatically rescale camera when scene changes");
+            auto_toggle_on_scene_change = cfg_general.CreateEntry("auto_toggle_on_scene_change", false, "Automatically toggles VR mode depending on which scene is loaded");
 
             cfg_keyboard_shortcuts = MelonPreferences.CreateCategory("VRPatcherKeys", "VR Patcher Keybinds");
             keyboard_toggle_vr = cfg_keyboard_shortcuts.CreateEntry("key_toggle_vr", "f11", "Key to toggle VR");
@@ -76,7 +78,16 @@ namespace UnityVRPatcher
             MelonLogger.Msg("UnityVRPatcher initialized");
         }
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+            if ((bool)auto_toggle_on_scene_change.BoxedValue) {
+                if (scene.name.Contains("menu")) {
+                    MelonLogger.Msg("Menu loaded, disabling VR...");
+                    XRSettings.enabled = false;
+                } else {
+                    MelonLogger.Msg("Game loaded, enabling VR...");
+                    XRSettings.enabled = false;
+                }
+            }
             if ((bool)auto_rescale_on_scene_change.BoxedValue) SetScaleToUser();
         }
 
