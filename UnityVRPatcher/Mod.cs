@@ -80,7 +80,7 @@ namespace UnityVRPatcher
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             if ((bool)auto_toggle_on_scene_change.BoxedValue) {
-                if (scene.name.Contains("menu")) {
+                if (scene.name.ToLowerInvariant().Contains("menu")) {
                     MelonLogger.Msg("Menu loaded, disabling VR...");
                     XRSettings.enabled = false;
                 } else {

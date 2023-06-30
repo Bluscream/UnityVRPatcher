@@ -56,14 +56,4 @@ Note: If you need to edit hotkeys, you can find them in `<Game Folder>\UserData\
 6. If this doesn't work or if the game resets the scale, press **F5** to manually set the scale to value in `-cameraScale` again.
 
 ## Default config:
-```ini
-[VRPatcher]
-auto_rescale_on_scene_change = false
-
-[VRPatcherKeys]
-key_toggle_vr = "f11"
-key_reparent_cam = "f2"
-key_scale_up = "f4"
-key_scale_down = "f3"
-key_scale_to_user = "f5"
-```
+auto_toggle_on_scene_change
