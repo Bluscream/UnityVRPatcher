@@ -48,6 +48,9 @@
     <Reference Include="UnityEngine.VRModule">
       <HintPath>D:\OneDrive\Games\Storm Chasers\Storm Chasers_Data\Managed\UnityEngine.VRModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\OneDrive\Games\Storm Chasers\Storm Chasers_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraReparent.cs" />

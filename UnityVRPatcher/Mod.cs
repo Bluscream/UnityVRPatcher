@@ -30,11 +30,13 @@ namespace UnityVRPatcher
 
         MelonPreferences_Category cfg_keyboard_shortcuts;
         MelonPreferences_Entry keyboard_toggle_vr;
+        MelonPreferences_Entry keyboard_center_vr;
         MelonPreferences_Entry keyboard_reparent_cam;
         MelonPreferences_Entry keyboard_scale_up;
         MelonPreferences_Entry keyboard_scale_down;
         MelonPreferences_Entry keyboard_scale_to_user;
         string keyboard_toggle_vr_key;
+        string keyboard_center_vr_key;
         string keyboard_reparent_cam_key;
         string keyboard_scale_up_key;
         string keyboard_scale_down_key;
@@ -47,6 +49,7 @@ namespace UnityVRPatcher
 
             cfg_keyboard_shortcuts = MelonPreferences.CreateCategory("VRPatcherKeys", "VR Patcher Keybinds");
             keyboard_toggle_vr = cfg_keyboard_shortcuts.CreateEntry("key_toggle_vr", "f11", "Key to toggle VR");
+            keyboard_center_vr = cfg_keyboard_shortcuts.CreateEntry("key_center_vr", "f12", "Key to center VR");
             keyboard_reparent_cam = cfg_keyboard_shortcuts.CreateEntry("key_reparent_cam", "f2", "Key to reparent camera");
             keyboard_scale_up = cfg_keyboard_shortcuts.CreateEntry("key_scale_up", "f4", "Key to scale up");
             keyboard_scale_down = cfg_keyboard_shortcuts.CreateEntry("key_scale_down", "f3", "Key to scale down");
@@ -60,7 +63,7 @@ namespace UnityVRPatcher
                 MelonLogger.Error($"Error while grabbing Input Methods: {e}");
             }
             try {
-                UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+                SceneManager.sceneLoaded += OnSceneLoaded;
                 CameraType = GetUnityType("Camera");
                 TransformType = GetUnityType("Transform");
                 Vector3Type = GetUnityType("Vector3");
@@ -78,15 +81,23 @@ namespace UnityVRPatcher
         }
 
         public override void OnPreferencesLoaded() {
+            MelonLogger.Msg(" === Keybinds ===");
             keyboard_toggle_vr_key = keyboard_toggle_vr.GetValueAsString();
+            MelonLogger.Msg($"Toggle VR: {keyboard_toggle_vr_key}");
+            keyboard_center_vr_key = keyboard_center_vr.GetValueAsString();
+            MelonLogger.Msg($"Center VR: {keyboard_center_vr_key}");
             keyboard_reparent_cam_key = keyboard_reparent_cam.GetValueAsString();
+            MelonLogger.Msg($"Reparent Camera: {keyboard_reparent_cam_key}");
             keyboard_scale_up_key = keyboard_scale_up.GetValueAsString();
+            MelonLogger.Msg($"Scale Up: {keyboard_scale_up_key}");
             keyboard_scale_down_key = keyboard_scale_down.GetValueAsString();
+            MelonLogger.Msg($"Scale Down: {keyboard_scale_down_key}");
             keyboard_scale_to_user_key = keyboard_scale_to_user.GetValueAsString();
-            MelonLogger.Msg($"Updated keybinds: {keyboard_toggle_vr_key}, {keyboard_reparent_cam_key}, {keyboard_scale_up_key}, {keyboard_scale_down_key}, {keyboard_scale_to_user_key}");
+            MelonLogger.Msg($"Scale To User: {keyboard_scale_to_user_key}");
+            MelonLogger.Msg("================");
         }
 
-        public override void OnUpdate()
+        public override void OnLateUpdate()
         {
             if (GetKeyDownMethod == null) return;
             if (GetKeyDown(keyboard_scale_to_user_key)) {
@@ -103,6 +114,9 @@ namespace UnityVRPatcher
             } else if (GetKeyDown(keyboard_toggle_vr_key)) {
                 XRSettings.enabled = !XRSettings.enabled;
                 MelonLogger.Msg($"VR has been {(XRSettings.enabled ? "enabled" : "disabled")}");
+            } else if (GetKeyDown(keyboard_center_vr_key)) {
+                InputTracking.Recenter();
+                MelonLogger.Msg("VR has been recentered");
             }
         }
 
