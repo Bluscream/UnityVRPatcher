@@ -1,5 +1,7 @@
 # Unity VR Patcher Mod for MelonLoader
 
+| :warning: Deprecation Notice |
+|:---------------------------|
 ```diff
 - This mod has been superseeded by https://github.com/Raicuparta/uuvr
 ```
